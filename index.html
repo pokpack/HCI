@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-Computer Interaction (HCI) — วิศวกรรมคอมพิวเตอร์ ปี 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:   #0F4C81;
+      --secondary: #F57C00;
+      --accent:    #00A6A6;
+      --bg:        #F8FAFC;
+      --text:      #1F2937;
+      --muted:     #6B7280;
+      --border:    #E5E7EB;
+      --white:     #ffffff;
+    }
+
+    body {
+      font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+    }
+    .hero-inner { max-width: 960px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 4px 16px;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 span { color: rgba(255,255,255,0.7); font-weight: 300; }
+    .hero-meta {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      padding: 1rem 0.75rem;
+      text-align: center;
+    }
+    .stat-box .num {
+      display: block;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-box .lbl {
+      display: block;
+      font-size: 11px;
+      opacity: 0.75;
+      font-weight: 300;
+    }
+
+    /* ─── CONTENT ───────────────────────────────────────────────── */
+    .content { max-width: 960px; margin: 0 auto; padding: 0 2rem 3rem; }
+
+    /* ─── SECTION ───────────────────────────────────────────────── */
+    .section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-left: 3px solid var(--secondary);
+      padding-left: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── PHILOSOPHY ────────────────────────────────────────────── */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .phil-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .phil-card:nth-child(2) { border-top-color: var(--secondary); }
+    .phil-card:nth-child(3) { border-top-color: var(--accent); }
+    .phil-card .level {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+    .phil-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .phil-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── FLOW ───────────────────────────────────────────────────── */
+    .flow-bar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .flow-pill {
+      background: #E6F1FB;
+      color: #0C447C;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 5px 14px;
+    }
+    .flow-arrow {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 300;
+    }
+    .flow-note {
+      width: 100%;
+      margin-top: 0.75rem;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ─── MODULES ────────────────────────────────────────────────── */
+    .module-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mod-card {
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid transparent;
+    }
+    .mod-card.m1 { background: #E6F1FB; border-color: #B5D4F4; }
+    .mod-card.m2 { background: #E1F5EE; border-color: #9FE1CB; }
+    .mod-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .mod-card.m1 .mod-label { color: #185FA5; }
+    .mod-card.m2 .mod-label { color: #0F6E56; }
+    .mod-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .mod-chapters { list-style: none; }
+    .mod-chapters li {
+      font-size: 13px;
+      color: #374151;
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mod-chapters li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .mod-card.m1 .mod-chapters li::before { background: #185FA5; }
+    .mod-card.m2 .mod-chapters li::before { background: #0F6E56; }
+
+    /* ─── CHAPTER CARDS ──────────────────────────────────────────── */
+    .ch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ch-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+    }
+    .ch-card.available { border-left: 3px solid var(--primary); }
+    .ch-card.coming { opacity: 0.6; }
+
+    .soon-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 9px;
+      font-weight: 500;
+      background: #F3F4F6;
+      color: #9CA3AF;
+      border-radius: 10px;
+      padding: 2px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ch-num {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ch-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .ch-clos { display: flex; flex-direction: column; gap: 3px; }
+    .ch-clo {
+      font-size: 12px;
+      color: #4B5563;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.5;
+    }
+    .ch-clo::before {
+      content: '✓';
+      color: var(--accent);
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ch-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .tag {
+      font-size: 10px;
+      background: #F3F4F6;
+      color: #4B5563;
+      border-radius: 10px;
+      padding: 3px 10px;
+    }
+    .ch-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .ch-deliver {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .ch-btn {
+      display: inline-block;
+      font-family: 'Kanit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .ch-btn:hover { background: #0d4070; }
+    .ch-btn.disabled {
+      background: #E5E7EB;
+      color: #9CA3AF;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* ─── DELIVERABLES TABLE ─────────────────────────────────────── */
+    .table-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 500;
+    }
+    tbody td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #F9FAFB; }
+    tbody td:nth-child(2) { color: var(--primary); font-weight: 500; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 12px;
+    }
+    footer strong { color: #fff; font-weight: 500; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 22px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .module-grid { grid-template-columns: 1fr; }
+      .ch-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">วิศวกรรมคอมพิวเตอร์ &nbsp;·&nbsp; ชั้นปีที่ 4</div>
+      <h1>Human-Computer Interaction <span>(HCI)</span></h1>
+      <p class="hero-meta">
+        ภาคการศึกษา 69-1 &nbsp;·&nbsp; 22 มิถุนายน – 12 ตุลาคม 2569 &nbsp;·&nbsp; เรียนทุกวันจันทร์ คาบละ 3 ชั่วโมง
+      </p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span class="num">15</span>
+          <span class="lbl">คาบเรียน</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">8</span>
+          <span class="lbl">บทเรียน</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">80%</span>
+          <span class="lbl">Hands-on</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">2</span>
+          <span class="lbl">Module</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- PHILOSOPHY -->
+    <div class="section">
+      <div class="section-label">Philosophy</div>
+      <div class="philosophy-grid">
+        <div class="phil-card">
+          <div class="level">ระดับ 1</div>
+          <h4>Engineering Mindset</h4>
+          <p>HCI คือวิศวกรรมที่ต้องวัดผลได้ ความสวยงามเป็นผลพลอยได้ ไม่ใช่เป้าหมาย</p>
+        </div>
+        <div class="phil-card">
+          <div class="level">ระดับ 2</div>
+          <h4>Evidence-Based Iteration</h4>
+          <p>ทุก Prototype ต้องผ่าน Usability Testing → Evaluation → Metrics → Report ก่อนถือว่าสมบูรณ์</p>
+        </div>
+        <div class="phil-card">
+          <div class="level">ระดับ 3</div>
+          <h4>Real System Building</h4>
+          <p>สร้างระบบจริง ทดสอบกับผู้ใช้จริง ทุกบทมี Deliverable ที่จับต้องได้</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARNING FLOW -->
+    <div class="section">
+      <div class="section-label">Learning Flow</div>
+      <div class="flow-bar">
+        <span class="flow-pill">ศึกษาผู้ใช้</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pill">ออกแบบ</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pill">พัฒนาต้นแบบ</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pill">ทดสอบ</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pill">Usability Report</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pill">ปรับปรุง</span>
+        <p class="flow-note">วงจรนี้วนซ้ำทุกบท — Build → Test → Measure → Report → Refine</p>
+      </div>
+    </div>
+
+    <!-- MODULE OVERVIEW -->
+    <div class="section">
+      <div class="section-label">โครงสร้างรายวิชา</div>
+      <div class="module-grid">
+        <div class="mod-card m1">
+          <div class="mod-label">Module 1</div>
+          <h4>GUI + Voice (บทที่ 1–4)</h4>
+          <ul class="mod-chapters">
+            <li>Ch.1 &nbsp;พื้นฐาน HCI และ Usability Engineering</li>
+            <li>Ch.2 &nbsp;UX Research และการวิเคราะห์ผู้ใช้</li>
+            <li>Ch.3 &nbsp;การออกแบบ UI และสร้างต้นแบบ</li>
+            <li>Ch.4 &nbsp;การปฏิสัมพันธ์ด้วยเสียง (Voice Recognition)</li>
+          </ul>
+        </div>
+        <div class="mod-card m2">
+          <div class="mod-label">Module 2</div>
+          <h4>Gesture + AR/VR (บทที่ 5–8)</h4>
+          <ul class="mod-chapters">
+            <li>Ch.5 &nbsp;การปฏิสัมพันธ์ด้วยท่าทาง (Gesture Recognition)</li>
+            <li>Ch.6 &nbsp;เทคโนโลยีความเป็นจริงเสริม (AR)</li>
+            <li>Ch.7 &nbsp;เทคโนโลยีโลกเสมือน (VR)</li>
+            <li>Ch.8 &nbsp;การบูรณาการเทคโนโลยีและโครงงานปลายภาค</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER CARDS -->
+    <div class="section">
+      <div class="section-label">บทเรียนทั้งหมด</div>
+      <div class="ch-grid">
+
+        <!-- CH1 -->
+        <div class="ch-card available">
+          <div class="ch-num">Chapter 1 &nbsp;·&nbsp; Foundation</div>
+          <div class="ch-title">พื้นฐาน HCI และ Usability Engineering</div>
+          <div class="ch-clos">
+            <div class="ch-clo">อธิบาย HCI, UCD และ ISO 9241-11 ได้</div>
+            <div class="ch-clo">คำนวณ Completion Rate, Time on Task, Error Rate และ SUS ได้</div>
+            <div class="ch-clo">จัดทำ Mini Usability Report ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">ISO 9241-11</span>
+            <span class="tag">SUS</span>
+            <span class="tag">Usability Metrics</span>
+            <span class="tag">UCD</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">Worksheet + Mini Usability Report</span>
+            <a class="ch-btn" href="chapters/chapter01/CH01_HCI_USABILITY_v2.html" target="_blank">เปิดสไลด์ →</a>
+          </div>
+        </div>
+
+        <!-- CH2 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 2 &nbsp;·&nbsp; Research</div>
+          <div class="ch-title">UX Research และการวิเคราะห์ผู้ใช้</div>
+          <div class="ch-clos">
+            <div class="ch-clo">สัมภาษณ์ผู้ใช้และวิเคราะห์ความต้องการได้</div>
+            <div class="ch-clo">สร้าง Persona และ Empathy Map ได้</div>
+            <div class="ch-clo">สร้าง User Journey Map ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">User Interview</span>
+            <span class="tag">Persona</span>
+            <span class="tag">Empathy Map</span>
+            <span class="tag">Journey Map</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">Persona + User Journey Map</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH3 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 3 &nbsp;·&nbsp; Design</div>
+          <div class="ch-title">การออกแบบ UI และสร้างต้นแบบ</div>
+          <div class="ch-clos">
+            <div class="ch-clo">ออกแบบ Wireframe ตามหลัก Visual Hierarchy ได้</div>
+            <div class="ch-clo">สร้าง High-Fidelity Prototype ด้วย Figma ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Wireframe</span>
+            <span class="tag">Design System</span>
+            <span class="tag">Color Theory</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">GUI Prototype + Usability Report</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH4 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 4 &nbsp;·&nbsp; Voice</div>
+          <div class="ch-title">การปฏิสัมพันธ์ด้วยเสียง</div>
+          <div class="ch-clos">
+            <div class="ch-clo">พัฒนาระบบ Voice Command ด้วย Web Speech API ได้</div>
+            <div class="ch-clo">ออกแบบ Voice User Interface (VUI) ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Voice UI</span>
+            <span class="tag">Speech Recognition</span>
+            <span class="tag">NLP Basics</span>
+            <span class="tag">Web Speech API</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">Voice Prototype + Usability Report</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH5 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 5 &nbsp;·&nbsp; Gesture</div>
+          <div class="ch-title">การปฏิสัมพันธ์ด้วยท่าทาง</div>
+          <div class="ch-clos">
+            <div class="ch-clo">ใช้ Mediapipe และ OpenCV สำหรับ Hand Tracking ได้</div>
+            <div class="ch-clo">สร้างระบบควบคุมด้วยท่าทาง (Touchless Interaction) ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Mediapipe</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Hand Tracking</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">Gesture System + Usability Report</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH6 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 6 &nbsp;·&nbsp; AR</div>
+          <div class="ch-title">เทคโนโลยีความเป็นจริงเสริม (AR)</div>
+          <div class="ch-clos">
+            <div class="ch-clo">สร้าง AR Application เชิงวิศวกรรมด้วย Unity + Vuforia ได้</div>
+            <div class="ch-clo">ใช้ Image Tracking และ Spatial Mapping ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Vuforia</span>
+            <span class="tag">Image Tracking</span>
+            <span class="tag">Digital Overlay</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">AR System + Usability Report</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH7 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 7 &nbsp;·&nbsp; VR</div>
+          <div class="ch-title">เทคโนโลยีโลกเสมือน (VR)</div>
+          <div class="ch-clos">
+            <div class="ch-clo">พัฒนา VR Experience ด้วย Unity ได้</div>
+            <div class="ch-clo">เข้าใจ Motion Sickness และออกแบบเพื่อลดผลกระทบได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Unity VR</span>
+            <span class="tag">HTC Vive</span>
+            <span class="tag">Immersive</span>
+            <span class="tag">Motion Sickness</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">VR Environment + Usability Report</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+        <!-- CH8 -->
+        <div class="ch-card coming">
+          <span class="soon-badge">Coming Soon</span>
+          <div class="ch-num">Chapter 8 &nbsp;·&nbsp; Capstone</div>
+          <div class="ch-title">การบูรณาการเทคโนโลยีและโครงงานปลายภาค</div>
+          <div class="ch-clos">
+            <div class="ch-clo">บูรณาการเทคโนโลยี HCI หลายโมดัลเข้าด้วยกันได้</div>
+            <div class="ch-clo">พัฒนาโครงงาน HCI ครบวงจรพร้อม Final Usability Report ได้</div>
+          </div>
+          <div class="ch-tags">
+            <span class="tag">Multimodal</span>
+            <span class="tag">HCI Ethics</span>
+            <span class="tag">System Integration</span>
+          </div>
+          <div class="ch-footer">
+            <span class="ch-deliver">Final Project + Complete Report + Presentation</span>
+            <span class="ch-btn disabled">เร็วๆ นี้</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DELIVERABLES TABLE -->
+    <div class="section">
+      <div class="section-label">Deliverables ตลอดรายวิชา</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">บท</th>
+              <th>Prototype</th>
+              <th>Deliverable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ch.1</td>
+              <td>Existing System Evaluation</td>
+              <td>Worksheet + Mini Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.2</td>
+              <td>Persona Package</td>
+              <td>Persona + User Journey Map</td>
+            </tr>
+            <tr>
+              <td>Ch.3</td>
+              <td>GUI Prototype</td>
+              <td>High-Fidelity Prototype + Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.4</td>
+              <td>Voice Prototype</td>
+              <td>Voice System + Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.5</td>
+              <td>Gesture Prototype</td>
+              <td>Gesture System + Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.6</td>
+              <td>AR Prototype</td>
+              <td>AR System + Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.7</td>
+              <td>VR Prototype</td>
+              <td>VR Environment + Usability Report</td>
+            </tr>
+            <tr>
+              <td>Ch.8</td>
+              <td>Final Integrated Prototype</td>
+              <td>Final Project + Complete Usability Report + Presentation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <strong>Human-Computer Interaction (HCI)</strong> &nbsp;·&nbsp;
+    วิศวกรรมคอมพิวเตอร์ ชั้นปีที่ 4 &nbsp;·&nbsp;
+    ภาคการศึกษา 69-1 (2569)
+  </footer>
+
+</body>
+</html>
