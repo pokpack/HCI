@@ -132,6 +132,18 @@ table.sus-table tr.neg { background: #FFF7ED; }
 .workshop-output-box b { color: #B45309; }
 .workshop-case-slide .variable-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; margin-top: 4px; }
 .workshop-case-slide .variable-list div { font-size: 15px; line-height: 1.12; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 4px 6px; }
+.report-workshop-slide h3 { font-size: 1.16em; margin: 0 0 3px; }
+.report-workshop-slide .workshop-card { max-width: 1180px !important; margin: 8px auto !important; padding: 12px 14px; }
+.report-workshop-layout { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 10px; align-items: stretch; }
+.report-instruction-panel, .report-case-panel { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 8px 10px; }
+.report-panel-title { font-size: 18px; line-height: 1.1; font-weight: 900; margin-bottom: 5px; }
+.report-instruction-list { margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.16; }
+.report-case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+.report-case-item { min-height: 56px; border-radius: 7px; padding: 5px 7px; background: #FFFFFF; border-left: 4px solid #F57C00; color: #172033; }
+.report-case-item b { display: block; color: #0F4C81; font-size: 16px; line-height: 1.05; margin-bottom: 2px; }
+.report-case-item span { display: block; font-size: 16px; line-height: 1.12; }
+.report-case-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.report-case-footer div { border-radius: 7px; padding: 6px 8px; font-size: 16px; line-height: 1.12; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.24); }
 .mini-lab { display: grid; grid-template-columns: 0.7fr 1fr 0.78fr; gap: 8px; align-items: stretch; margin-top: 10px; }
 .mini-lab.compact { grid-template-columns: repeat(4, 1fr); }
 .mini-cell { background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 8px 10px; min-height: 54px; color: #172033; box-shadow: 0 2px 8px rgba(15,76,129,0.06); }
@@ -226,6 +238,14 @@ table.sus-table tr.neg { background: #FFF7ED; }
 .testing-process-fix svg text { font-size: 10px !important; }
 .testing-process-fix svg text[font-size="13"] { font-size: 13px !important; }
 .testing-process-fix svg text[font-size="9"] { font-size: 9px !important; }
+.testing-process-fix .testing-process-svg { width: min(1240px, 98%) !important; height: 330px !important; margin-top: 18px !important; }
+.testing-process-fix .testing-process-svg text { font-size: 16px !important; }
+.testing-process-fix .testing-process-svg .step-title { font-size: 22px !important; font-weight: 900; }
+.testing-process-fix .testing-process-svg .step-subtitle { font-size: 17px !important; font-weight: 800; }
+.testing-process-fix .testing-process-svg .step-deliverable { font-size: 16px !important; font-weight: 700; }
+.testing-process-fix .testing-process-svg .chapter-note { font-size: 18px !important; font-weight: 700; }
+.testing-process-fix .testing-process-svg .case-label { font-size: 16px !important; font-weight: 900; }
+.testing-process-fix .testing-process-svg .case-text { font-size: 16px !important; font-weight: 700; }
 .pulse-target { animation: pulseNode 1.5s ease-in-out infinite; }
 .tap-hint { position: relative; display: inline-block; }
 .tap-hint::after { content: "คลิก"; position: absolute; right: -44px; top: -12px; color: #DC2626; font-size: 0.44em; font-weight: 800; animation: hintNudge 1s ease-in-out infinite; }
@@ -2020,52 +2040,68 @@ table.sus-table tr.neg { background: #FFF7ED; }
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="font-boost spacious-testing">
   <h2>กระบวนการ Usability Testing พื้นฐาน <span class="lo-badge">LO9</span></h2>
-  <svg viewBox="0 0 720 180" width="720" height="180" style="display:block;margin:14px auto 0;">
+  <svg class="testing-process-svg" viewBox="0 0 1120 330" width="1120" height="330" style="display:block;margin:18px auto 0;">
     <!-- Step 1: Plan -->
-    <rect x="10" y="40" width="120" height="90" rx="10" fill="rgba(15,76,129,0.10)" stroke="#0F4C81" stroke-width="2"/>
-    <text x="70" y="68" font-family="Kanit,sans-serif" font-size="13" font-weight="700" fill="#0F4C81" text-anchor="middle">1. Plan</text>
-    <text x="70" y="86" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">กำหนด goals</text>
-    <text x="70" y="100" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">tasks, metrics</text>
-    <text x="70" y="118" font-family="Kanit,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle">Test Plan Doc</text>
-    <!-- Arrow -->
-    <polygon points="132,85 144,80 144,90" fill="#CBD5E1"/>
-    <line x1="130" y1="85" x2="145" y2="85" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="20" y="45" width="190" height="150" rx="14" fill="rgba(15,76,129,0.10)" stroke="#0F4C81" stroke-width="3"/>
+    <text class="step-title" x="115" y="82" font-family="Kanit,sans-serif" fill="#0F4C81" text-anchor="middle">1. Plan</text>
+    <text class="step-subtitle" x="115" y="116" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">กำหนดเป้าหมาย</text>
+    <text class="step-subtitle" x="115" y="150" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">Tasks + Metrics</text>
+    <text class="step-deliverable" x="115" y="184" font-family="Kanit,sans-serif" fill="#6B7280" text-anchor="middle">Test Plan Doc</text>
+    <polygon points="218,120 238,110 238,130" fill="#CBD5E1"/>
+    <line x1="210" y1="120" x2="238" y2="120" stroke="#CBD5E1" stroke-width="4"/>
+
     <!-- Step 2: Recruit -->
-    <rect x="148" y="40" width="120" height="90" rx="10" fill="rgba(0,166,166,0.10)" stroke="#00A6A6" stroke-width="2"/>
-    <text x="208" y="68" font-family="Kanit,sans-serif" font-size="13" font-weight="700" fill="#00A6A6" text-anchor="middle">2. Recruit</text>
-    <text x="208" y="86" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">หาผู้ทดสอบ</text>
-    <text x="208" y="100" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">5+ คน</text>
-    <text x="208" y="118" font-family="Kanit,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle">Consent Form</text>
-    <!-- Arrow -->
-    <polygon points="270,85 282,80 282,90" fill="#CBD5E1"/>
-    <line x1="268" y1="85" x2="283" y2="85" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="250" y="45" width="190" height="150" rx="14" fill="rgba(0,166,166,0.10)" stroke="#00A6A6" stroke-width="3"/>
+    <text class="step-title" x="345" y="82" font-family="Kanit,sans-serif" fill="#00A6A6" text-anchor="middle">2. Recruit</text>
+    <text class="step-subtitle" x="345" y="116" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">หาผู้ทดสอบ</text>
+    <text class="step-subtitle" x="345" y="150" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">อย่างน้อย 5 คน</text>
+    <text class="step-deliverable" x="345" y="184" font-family="Kanit,sans-serif" fill="#6B7280" text-anchor="middle">Consent Form</text>
+    <polygon points="448,120 468,110 468,130" fill="#CBD5E1"/>
+    <line x1="440" y1="120" x2="468" y2="120" stroke="#CBD5E1" stroke-width="4"/>
+
     <!-- Step 3: Facilitate -->
-    <rect x="286" y="40" width="120" height="90" rx="10" fill="rgba(245,124,0,0.10)" stroke="#F57C00" stroke-width="2"/>
-    <text x="346" y="62" font-family="Kanit,sans-serif" font-size="13" font-weight="700" fill="#F57C00" text-anchor="middle">3. Facilitate</text>
-    <text x="346" y="80" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">ดำเนินการ test</text>
-    <text x="346" y="94" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">จดบันทึก</text>
-    <text x="346" y="108" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">Think-Aloud</text>
-    <text x="346" y="122" font-family="Kanit,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle">Raw Data</text>
-    <!-- Arrow -->
-    <polygon points="408,85 420,80 420,90" fill="#CBD5E1"/>
-    <line x1="406" y1="85" x2="421" y2="85" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="480" y="45" width="190" height="150" rx="14" fill="rgba(245,124,0,0.10)" stroke="#F57C00" stroke-width="3"/>
+    <text class="step-title" x="575" y="82" font-family="Kanit,sans-serif" fill="#F57C00" text-anchor="middle">3. Facilitate</text>
+    <text class="step-subtitle" x="575" y="116" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">ดำเนินการทดสอบ</text>
+    <text class="step-subtitle" x="575" y="150" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">Think-Aloud</text>
+    <text class="step-deliverable" x="575" y="184" font-family="Kanit,sans-serif" fill="#6B7280" text-anchor="middle">Raw Data</text>
+    <polygon points="678,120 698,110 698,130" fill="#CBD5E1"/>
+    <line x1="670" y1="120" x2="698" y2="120" stroke="#CBD5E1" stroke-width="4"/>
+
     <!-- Step 4: Analyze -->
-    <rect x="424" y="40" width="120" height="90" rx="10" fill="rgba(124,58,237,0.10)" stroke="#7C3AED" stroke-width="2"/>
-    <text x="484" y="68" font-family="Kanit,sans-serif" font-size="13" font-weight="700" fill="#7C3AED" text-anchor="middle">4. Analyze</text>
-    <text x="484" y="86" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">คำนวณ metrics</text>
-    <text x="484" y="100" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">หา patterns</text>
-    <text x="484" y="118" font-family="Kanit,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle">Analysis Sheet</text>
-    <!-- Arrow -->
-    <polygon points="546,85 558,80 558,90" fill="#CBD5E1"/>
-    <line x1="544" y1="85" x2="559" y2="85" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="710" y="45" width="190" height="150" rx="14" fill="rgba(124,58,237,0.10)" stroke="#7C3AED" stroke-width="3"/>
+    <text class="step-title" x="805" y="82" font-family="Kanit,sans-serif" fill="#7C3AED" text-anchor="middle">4. Analyze</text>
+    <text class="step-subtitle" x="805" y="116" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">คำนวณ Metrics</text>
+    <text class="step-subtitle" x="805" y="150" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">หา Patterns</text>
+    <text class="step-deliverable" x="805" y="184" font-family="Kanit,sans-serif" fill="#6B7280" text-anchor="middle">Analysis Sheet</text>
+    <polygon points="908,120 928,110 928,130" fill="#CBD5E1"/>
+    <line x1="900" y1="120" x2="928" y2="120" stroke="#CBD5E1" stroke-width="4"/>
+
     <!-- Step 5: Report -->
-    <rect x="562" y="40" width="148" height="90" rx="10" fill="rgba(220,38,38,0.10)" stroke="#DC2626" stroke-width="2.5"/>
-    <text x="636" y="68" font-family="Kanit,sans-serif" font-size="13" font-weight="700" fill="#DC2626" text-anchor="middle">5. Report ✅</text>
-    <text x="636" y="86" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">สรุปผล + findings</text>
-    <text x="636" y="100" font-family="Kanit,sans-serif" font-size="10" fill="#374151" text-anchor="middle">Recommendations</text>
-    <text x="636" y="118" font-family="Kanit,sans-serif" font-size="9" fill="#DC2626" font-weight="600" text-anchor="middle">Usability Report</text>
-    <!-- Chapter 3 note -->
-    <text x="360" y="165" font-family="Kanit,sans-serif" font-size="10" fill="#6B7280" text-anchor="middle">Chapter 1 = เน้น Process · Chapter 3 = Methods เชิงลึก (Heuristic, Guerrilla, Interview)</text>
+    <rect x="940" y="45" width="160" height="150" rx="14" fill="rgba(220,38,38,0.10)" stroke="#DC2626" stroke-width="3.5"/>
+    <text class="step-title" x="1020" y="82" font-family="Kanit,sans-serif" fill="#DC2626" text-anchor="middle">5. Report ✅</text>
+    <text class="step-subtitle" x="1020" y="116" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">Findings</text>
+    <text class="step-subtitle" x="1020" y="150" font-family="Kanit,sans-serif" fill="#374151" text-anchor="middle">Recommendations</text>
+    <text class="step-deliverable" x="1020" y="184" font-family="Kanit,sans-serif" fill="#DC2626" text-anchor="middle">Usability Report</text>
+
+    <!-- Case study example -->
+    <rect x="20" y="220" width="1080" height="86" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+    <text class="chapter-note" x="560" y="246" font-family="Kanit,sans-serif" fill="#0F4C81" text-anchor="middle">Case Study: ทดสอบระบบลงทะเบียนเรียนของนักศึกษา</text>
+
+    <rect x="38" y="262" width="196" height="32" rx="8" fill="rgba(15,76,129,0.08)" stroke="#0F4C81"/>
+    <text class="case-label" x="136" y="281" font-family="Kanit,sans-serif" fill="#0F4C81" text-anchor="middle">Plan: เพิ่มวิชา + ดูตาราง</text>
+
+    <rect x="248" y="262" width="196" height="32" rx="8" fill="rgba(0,166,166,0.08)" stroke="#00A6A6"/>
+    <text class="case-label" x="346" y="281" font-family="Kanit,sans-serif" fill="#008B8B" text-anchor="middle">Recruit: นศ. 5 คน</text>
+
+    <rect x="458" y="262" width="196" height="32" rx="8" fill="rgba(245,124,0,0.08)" stroke="#F57C00"/>
+    <text class="case-label" x="556" y="281" font-family="Kanit,sans-serif" fill="#B45309" text-anchor="middle">Facilitate: Think-Aloud</text>
+
+    <rect x="668" y="262" width="196" height="32" rx="8" fill="rgba(124,58,237,0.08)" stroke="#7C3AED"/>
+    <text class="case-label" x="766" y="281" font-family="Kanit,sans-serif" fill="#7C3AED" text-anchor="middle">Analyze: CR · Time · Error</text>
+
+    <rect x="878" y="262" width="196" height="32" rx="8" fill="rgba(220,38,38,0.08)" stroke="#DC2626"/>
+    <text class="case-label" x="976" y="281" font-family="Kanit,sans-serif" fill="#DC2626" text-anchor="middle">Report: ปัญหา + Severity</text>
   </svg>
   <aside class="notes">Chapter 1 = "Basic" เน้น process ไม่ใช่ method เชิงลึก (Heuristic/Guerrilla ย้ายไป Ch.3) Task Scenario ต้องชัดเจน: "ซื้อสินค้า X ราคาต่ำกว่า 500 บาท" ไม่ใช่ "ลองใช้ระบบดู" Facilitator ต้องไม่ชี้นำผู้ทดสอบ</aside>
 </section>
@@ -2246,15 +2282,15 @@ table.sus-table tr.neg { background: #FFF7ED; }
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- S42 WORKSHOP 3 -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="workshop-readable font-boost">
-  <div class="workshop-card" style="margin:20px auto;max-width:720px;">
+<section class="workshop-readable font-boost report-workshop-slide">
+  <div class="workshop-card">
     <div style="font-size:0.5em;letter-spacing:3px;opacity:0.8;margin-bottom:4px;">WORKSHOP 3</div>
     <h3>📝 Mini Usability Report</h3>
-    <div style="font-size:0.55em;opacity:0.9;margin-bottom:16px;">⏱ 40 นาที · กลุ่มเดิม · ใช้ข้อมูลจาก W1 + W2</div>
-    <div class="grid-2" style="gap:14px;">
-      <div>
-        <div style="font-weight:600;font-size:0.6em;margin-bottom:8px;">📌 Instructions (8 ส่วน)</div>
-        <ul style="font-size:0.52em;">
+    <div style="font-size:16px;opacity:0.9;margin-bottom:8px;">⏱ 40 นาที · กลุ่มเดิม · ใช้ข้อมูลจาก W1 + W2 · เขียนรายงาน 1–2 หน้า A4</div>
+    <div class="report-workshop-layout">
+      <div class="report-instruction-panel">
+        <div class="report-panel-title">📌 Instructions (8 ส่วน)</div>
+        <ul class="report-instruction-list">
           <li><strong>1. Executive Summary</strong> — 3-5 ประโยค</li>
           <li><strong>2. Methodology</strong> — วิธีการ, เครื่องมือ, เวลา</li>
           <li><strong>3. Participants</strong> — จำนวน, profile สั้น</li>
@@ -2264,19 +2300,22 @@ table.sus-table tr.neg { background: #FFF7ED; }
           <li><strong>7. Findings</strong> — 3 ประเด็น + หลักฐาน</li>
           <li><strong>8. Recommendations</strong> — 3 รายการ + Severity</li>
         </ul>
-      </div>
-      <div>
-        <div style="font-weight:600;font-size:0.6em;margin-bottom:8px;">📦 Criteria</div>
-        <div style="font-size:0.52em;background:rgba(255,255,255,0.15);padding:10px;border-radius:8px;">
-          ✓ ความยาว 1–2 หน้า A4<br/>
-          ✓ มีตาราง Results อย่างน้อย 1 ตาราง<br/>
-          ✓ Recommendations: Specific + Severity<br/>
-          ✓ ใช้ข้อมูลจริงจาก W1 + W2
+        <div class="report-case-footer">
+          <div><strong>Criteria:</strong> ตาราง Results 1 ตาราง · Metrics ถูก · Findings มีหลักฐาน</div>
+          <div><strong>Assessment:</strong> 8 ส่วนครบ 10% · Metrics 25% · Findings 30% · Recommendations 35%</div>
         </div>
-        <div style="margin-top:10px;font-size:0.52em;">
-          <div style="font-weight:600;margin-bottom:4px;">Assessment 40%:</div>
-          <div>8 ส่วนครบ (10%) · Metrics ถูก (25%)</div>
-          <div>Findings (30%) · Recommendations (35%)</div>
+      </div>
+      <div class="report-case-panel">
+        <div class="report-panel-title">ตัวอย่าง Case Study: ระบบลงทะเบียนเรียน</div>
+        <div class="report-case-grid">
+          <div class="report-case-item"><b>1. Executive Summary</b><span>นศ. 5 คนทำ 3 tasks พบ CR 67%, SUS 67.5 และปัญหาหลักคือหาเมนูเพิ่มรายวิชาไม่เจอ</span></div>
+          <div class="report-case-item"><b>2. Methodology</b><span>Remote usability test 25 นาที/คน ใช้ Think-Aloud, screen recording, SUS หลังทดสอบ</span></div>
+          <div class="report-case-item"><b>3. Participants</b><span>นศ. ปี 1 จำนวน 5 คน เคยใช้ระบบลงทะเบียน 0–1 ครั้ง และใช้มือถือเป็นหลัก</span></div>
+          <div class="report-case-item"><b>4. Tasks</b><span>T1 ค้นหารหัสวิชา · T2 เพิ่มรายวิชา · T3 ตรวจตารางชน โดยสำเร็จเมื่อกดยืนยันได้</span></div>
+          <div class="report-case-item"><b>5. Metrics</b><span>CR, Avg Time, Error Rate, Backtrack, SUS Score และคำพูดผู้ใช้ที่สะท้อนปัญหา</span></div>
+          <div class="report-case-item"><b>6. Results</b><span>T1 CR 100% / 45s, T2 CR 60% / 140s, T3 CR 40% / 180s, SUS 67.5</span></div>
+          <div class="report-case-item"><b>7. Findings</b><span>F1 เมนูซ่อนลึก · F2 feedback หลังเพิ่มวิชาไม่ชัด · F3 ตารางชนใช้สีอย่างเดียว</span></div>
+          <div class="report-case-item"><b>8. Recommendations</b><span>เพิ่มปุ่ม “เพิ่มรายวิชา” หน้าแรก Severity 4 · toast ยืนยัน Severity 3 · label ตารางชน Severity 3</span></div>
         </div>
       </div>
     </div>
@@ -3418,6 +3457,7 @@ function applyReadableSvgLayoutFixes() {
   });
 
   document.querySelectorAll('.spacious-testing svg').forEach((svg) => {
+    if (svg.classList.contains('testing-process-svg')) return;
     svg.setAttribute('viewBox', '0 0 760 230');
     svg.querySelectorAll('rect').forEach((rect) => rect.setAttribute('height', '112'));
     svg.querySelectorAll('text').forEach((text) => {
